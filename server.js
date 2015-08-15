@@ -17,14 +17,14 @@ passport.use(new Strategy(
 
 
 // Configure Passport authenticated session persistence.
-passport.serializeUser(function(user, done) {
-  done(null, user.id);
+passport.serializeUser(function(user, cb) {
+  cb(null, user.id);
 });
 
-passport.deserializeUser(function(id, done) {
+passport.deserializeUser(function(id, cb) {
   db.users.findById(id, function (err, user) {
-    if (err) { return done(err); }
-    done(null, user);
+    if (err) { return cb(err); }
+    cb(null, user);
   });
 });
 
